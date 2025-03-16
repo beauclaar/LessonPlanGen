@@ -1,0 +1,149 @@
+# Project Intelligence Rules
+
+## Code Organization
+
+1. **Component Directory Structure**
+   - Components are organized by feature/framework
+   - Framework-specific components go in src/components/Frameworks/
+   - Shared components go in src/components/
+   - Form components go in src/components/LessonPlan/
+
+2. **Store Module Patterns**
+   - Each framework has its own Vuex module
+   - Base lesson plan state in baseLessonPlan.ts
+   - Framework modules extend base functionality
+   - Consistent mutation/action naming
+
+## Implementation Patterns
+
+1. **Form Handling**
+   - Use v-model for form inputs
+   - Implement immediate validation
+   - State updates through Vuex mutations
+   - Cross-framework data sync through base module
+
+2. **Framework Integration**
+   - Dynamic form generation based on selection
+   - Framework data isolation in store
+   - Common validation patterns
+   - Shared utility functions
+
+3. **Type Definitions**
+   - Strong typing for props
+   - Interface definitions for state
+   - Enum usage for constants
+   - Type guards where needed
+
+## User Preferences
+
+1. **Code Style**
+   - 2-space indentation
+   - Single quotes for strings
+   - Semicolons required
+   - Clear component names
+
+2. **Component Structure**
+   - script setup syntax
+   - Composition API
+   - Props before other declarations
+   - Clear separation of concerns
+
+3. **Documentation**
+   - JSDoc comments for functions
+   - Component description in script
+   - Props documentation
+   - Type exports documentation
+
+## Project-Specific Rules
+
+1. **State Management**
+   - Use mapState/mapGetters for simple state
+   - Use composition API for complex state
+   - Framework state isolation
+   - Local state for form details
+
+2. **Form Validation**
+   - Immediate feedback
+   - Framework-specific rules
+   - Cross-framework validation
+   - Clear error messages
+
+3. **Data Flow**
+   - Props down, events up
+   - Vuex for shared state
+   - Local state for UI
+   - Event bus avoided
+
+## Known Challenges
+
+1. **Framework Integration**
+   - Complex nested forms
+   - Data synchronization
+   - Validation timing
+   - State persistence
+
+2. **Performance**
+   - Large form rendering
+   - Framework switching
+   - State tree size
+   - Memory management
+
+## Development Workflow
+
+1. **Git Practices**
+   - Feature branch workflow
+   - Descriptive commit messages
+   - Regular small commits
+   - Pull request reviews
+
+2. **Testing Requirements**
+   - Unit tests for components
+   - Store module testing
+   - Integration tests
+   - E2E for critical paths
+
+3. **Code Review**
+   - Focus on type safety
+   - Component reusability
+   - Performance impact
+   - Documentation quality
+
+## Tool Usage Patterns
+
+1. **Vite Development**
+   - Hot module replacement
+   - Fast refresh
+   - Build optimization
+   - Environment variables
+
+2. **TypeScript Configuration**
+   - Strict mode enabled
+   - Path aliases
+   - Type checking
+   - Declaration files
+
+3. **Vuetify Components**
+   - Consistent styling
+   - Form components
+   - Dialog usage
+   - Grid system
+
+## Evolution Notes
+
+1. **Framework Changes**
+   - Started with basic forms
+   - Added framework selection
+   - Implemented dynamic loading
+   - Enhanced validation
+
+2. **State Management**
+   - Initial simple store
+   - Added modules
+   - Improved persistence
+   - Type safety enhancements
+
+3. **Component Structure**
+   - Basic components
+   - Framework separation
+   - Reusable utilities
+   - Performance optimization

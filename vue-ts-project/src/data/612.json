@@ -1,0 +1,37 @@
+{
+  "activities": [
+    "Journal entry",
+    "Group brainstorming",
+    "Peer interviews",
+    "Debates"
+  ],
+  "assessments": {
+    "formative": [
+      "Student-led discussions",
+      "Project-based assessments",
+      "Portfolio reviews"
+    ],
+    "summative": [
+      "Research papers",
+      "Oral presentations"
+    ]
+  },
+  "supports": {
+    "sensory": [
+      "Videos & films",
+      "Broadcasts",
+      "Models & figures"
+    ],
+    "graphic": [
+      "Graphs",
+      "Timelines",
+      "Graphic organizers"
+    ],
+    "interactive": [
+      "In pairs or partners",
+      "In triads or small groups",
+      "Using cooperative group structures",
+      "In native language"
+    ]
+  }
+}

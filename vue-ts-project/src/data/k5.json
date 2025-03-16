@@ -1,0 +1,36 @@
+{
+  "activities": [
+    "Circle time discussion",
+    "Videos & films",
+    "Think-pair-share",
+    "Graphic organizers"
+  ],
+  "assessments": {
+    "formative": [
+      "Observation of student participation",
+      "Exit tickets",
+      "Student self-reflection"
+    ],
+    "summative": [
+      "Language proficiency tests",
+      "Content knowledge tests"
+    ]
+  },
+  "supports": {
+    "sensory": [
+      "Real-life objects (realia)",
+      "Manipulatives",
+      "Pictures & photographs"
+    ],
+    "graphic": [
+      "Charts",
+      "Number lines",
+      "Graphic organizers"
+    ],
+    "interactive": [
+      "In pairs or partners",
+      "In triads or small groups",
+      "In whole group"
+    ]
+  }
+}
