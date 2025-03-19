@@ -25,9 +25,39 @@ graph TB
     Content --> M[Mathematics]
     Content --> Sci[Science]
     Content --> SS[Social Studies]
+
+    WIDA --> GradeLevels[Grade Level Clusters]
+    GradeLevels --> K[Kindergarten]
+    GradeLevels --> G1[Grade 1]
+    GradeLevels --> G23[Grades 2-3]
+    GradeLevels --> G45[Grades 4-5]
+    GradeLevels --> G68[Grades 6-8]
+    GradeLevels --> G912[Grades 9-12]
+
+    WIDA --> Standards[WIDA Standards]
+    Standards --> S1[Standard 1]
+    Standards --> S2[Standard 2]
+    Standards --> S3[Standard 3]
+    Standards --> S4[Standard 4]
+    Standards --> S5[Standard 5]
 ```
 
 ## Standards Implementation Details
+
+### Grade Level Clusters
+- **Kindergarten**: Early childhood education
+- **Grade 1**: Primary education
+- **Grades 2-3**: Early elementary education
+- **Grades 4-5**: Upper elementary education
+- **Grades 6-8**: Middle school education
+- **Grades 9-12**: High school education
+
+### WIDA Standards
+- **Standard 1**: Social and Instructional Language
+- **Standard 2**: Language of Language Arts
+- **Standard 3**: Language of Mathematics
+- **Standard 4**: Language of Science
+- **Standard 5**: Language of Social Studies
 
 ### Language Domains
 - **Listening**: Receptive language skills for oral communication
