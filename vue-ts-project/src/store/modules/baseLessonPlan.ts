@@ -4,6 +4,8 @@ export type Topic = 'Mathematics' | 'English Language Arts' | 'Science' | 'Histo
 
 export interface BaseLessonPlan {
   title: string;
+  description: string;
+  gradeLevel: string;
   topic: Topic;
   timePerSession: number;
   occurrence: string;
@@ -33,6 +35,9 @@ export const isValidBaseLessonPlan = (plan: any): plan is BaseLessonPlan => {
     typeof plan === 'object' &&
     plan !== null &&
     typeof plan.title === 'string' &&
+    typeof plan.description === 'string' &&
+    typeof plan.gradeLevel === 'string' &&
+    plan.gradeLevel !== '' &&
     isValidTopic(plan.topic) &&
     typeof plan.timePerSession === 'number' &&
     plan.timePerSession > 0 &&
@@ -44,6 +49,8 @@ export const isValidBaseLessonPlan = (plan: any): plan is BaseLessonPlan => {
 const defaultState: BaseLessonPlanState = {
   plan: {
     title: '',
+    description: '',
+    gradeLevel: '',
     topic: 'Mathematics',
     timePerSession: 50,
     occurrence: '',
@@ -84,6 +91,14 @@ const baseLessonPlan: Module<BaseLessonPlanState, RootState> = {
       
       if ('title' in payload && typeof payload.title === 'string') {
         validatedPayload.title = payload.title;
+      }
+      
+      if ('description' in payload && typeof payload.description === 'string') {
+        validatedPayload.description = payload.description;
+      }
+
+      if ('gradeLevel' in payload && typeof payload.gradeLevel === 'string') {
+        validatedPayload.gradeLevel = payload.gradeLevel;
       }
       
       if ('topic' in payload && isValidTopic(payload.topic)) {

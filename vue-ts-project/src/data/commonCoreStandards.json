@@ -1,0 +1,147 @@
+{
+  "ELA": {
+    "K": {
+      "Reading": ["K.RL.1", "K.RL.2", "K.RL.3", "K.RI.4", "K.RI.5", "K.RI.6"],
+      "Writing": ["K.W.1", "K.W.2", "K.W.3"],
+      "Speaking and Listening": ["K.SL.1", "K.SL.2", "K.SL.3"],
+      "Language": ["K.L.1", "K.L.2"]
+    },
+    "1": {
+      "Reading": ["1.RL.1", "1.RL.2", "1.RL.3", "1.RI.4", "1.RI.5", "1.RI.6"],
+      "Writing": ["1.W.1", "1.W.2", "1.W.3"],
+      "Speaking and Listening": ["1.SL.1", "1.SL.2", "1.SL.3"],
+      "Language": ["1.L.1", "1.L.2"]
+    },
+    "2": {
+      "Reading": ["2.RL.1", "2.RL.2", "2.RL.3", "2.RI.4", "2.RI.5", "2.RI.6"],
+      "Writing": ["2.W.1", "2.W.2", "2.W.3"],
+      "Speaking and Listening": ["2.SL.1", "2.SL.2", "2.SL.3"],
+      "Language": ["2.L.1", "2.L.2"]
+    },
+    "3": {
+      "Reading": ["3.RL.1", "3.RL.2", "3.RL.3", "3.RI.4", "3.RI.5", "3.RI.6"],
+      "Writing": ["3.W.1", "3.W.2", "3.W.3"],
+      "Speaking and Listening": ["3.SL.1", "3.SL.2", "3.SL.3"],
+      "Language": ["3.L.1", "3.L.2"]
+    },
+    "4": {
+      "Reading": ["4.RL.1", "4.RL.2", "4.RL.3", "4.RI.4", "4.RI.5", "4.RI.6"],
+      "Writing": ["4.W.1", "4.W.2", "4.W.3"],
+      "Speaking and Listening": ["4.SL.1", "4.SL.2", "4.SL.3"],
+      "Language": ["4.L.1", "4.L.2"]
+    },
+    "5": {
+      "Reading": ["5.RL.1", "5.RL.2", "5.RL.3", "5.RI.4", "5.RI.5", "5.RI.6"],
+      "Writing": ["5.W.1", "5.W.2", "5.W.3"],
+      "Speaking and Listening": ["5.SL.1", "5.SL.2", "5.SL.3"],
+      "Language": ["5.L.1", "5.L.2"]
+    },
+    "6": {
+      "Reading": ["6.RL.1", "6.RL.2", "6.RL.3", "6.RI.4", "6.RI.5", "6.RI.6"],
+      "Writing": ["6.W.1", "6.W.2", "6.W.3"],
+      "Speaking and Listening": ["6.SL.1", "6.SL.2", "6.SL.3"],
+      "Language": ["6.L.1", "6.L.2"]
+    },
+    "7": {
+      "Reading": ["7.RL.1", "7.RL.2", "7.RL.3", "7.RI.4", "7.RI.5", "7.RI.6"],
+      "Writing": ["7.W.1", "7.W.2", "7.W.3"],
+      "Speaking and Listening": ["7.SL.1", "7.SL.2", "7.SL.3"],
+      "Language": ["7.L.1", "7.L.2"]
+    },
+    "8": {
+      "Reading": ["8.RL.1", "8.RL.2", "8.RL.3", "8.RI.4", "8.RI.5", "8.RI.6"],
+      "Writing": ["8.W.1", "8.W.2", "8.W.3"],
+      "Speaking and Listening": ["8.SL.1", "8.SL.2", "8.SL.3"],
+      "Language": ["8.L.1", "8.L.2"]
+    },
+    "9-10": {
+      "Reading": ["9-10.RL.1", "9-10.RL.2", "9-10.RL.3", "9-10.RI.1", "9-10.RI.2", "9-10.RI.3"],
+      "Writing": ["9-10.W.1", "9-10.W.2", "9-10.W.3"],
+      "Speaking and Listening": ["9-10.SL.1", "9-10.SL.2", "9-10.SL.3"],
+      "Language": ["9-10.L.1", "9-10.L.2"]
+    },
+    "11-12": {
+      "Reading": ["11-12.RL.1", "11-12.RL.2", "11-12.RL.3", "11-12.RI.1", "11-12.RI.2", "11-12.RI.3"],
+      "Writing": ["11-12.W.1", "11-12.W.2", "11-12.W.3"],
+      "Speaking and Listening": ["11-12.SL.1", "11-12.SL.2", "11-12.SL.3"],
+      "Language": ["11-12.L.1", "11-12.L.2"]
+    }
+  },
+  "Math": {
+    "K": {
+      "Counting and Cardinality": ["K.CC.1", "K.CC.2", "K.CC.3", "K.CC.4", "K.CC.5"],
+      "Operations and Algebraic Thinking": ["K.OA.1", "K.OA.2", "K.OA.3", "K.OA.4", "K.OA.5"],
+      "Number and Operations in Base Ten": ["K.NBT.1"],
+      "Measurement and Data": ["K.MD.1", "K.MD.2", "K.MD.3"],
+      "Geometry": ["K.G.1", "K.G.2", "K.G.3", "K.G.4", "K.G.5", "K.G.6"]
+    },
+    "1": {
+      "Operations and Algebraic Thinking": ["1.OA.1", "1.OA.2", "1.OA.3", "1.OA.4", "1.OA.5", "1.OA.6", "1.OA.7", "1.OA.8"],
+      "Number and Operations in Base Ten": ["1.NBT.1", "1.NBT.2", "1.NBT.3", "1.NBT.4", "1.NBT.5", "1.NBT.6"],
+      "Measurement and Data": ["1.MD.1", "1.MD.2", "1.MD.3", "1.MD.4"],
+      "Geometry": ["1.G.1", "1.G.2", "1.G.3"]
+    },
+    "2": {
+      "Operations and Algebraic Thinking": ["2.OA.1", "2.OA.2", "2.OA.3", "2.OA.4"],
+      "Number and Operations in Base Ten": ["2.NBT.1", "2.NBT.2", "2.NBT.3", "2.NBT.4", "2.NBT.5", "2.NBT.6", "2.NBT.7", "2.NBT.8", "2.NBT.9"],
+      "Measurement and Data": ["2.MD.1", "2.MD.2", "2.MD.3", "2.MD.4", "2.MD.5", "2.MD.6", "2.MD.7", "2.MD.8", "2.MD.9", "2.MD.10"],
+      "Geometry": ["2.G.1", "2.G.2", "2.G.3"]
+    },
+    "3": {
+      "Operations and Algebraic Thinking": ["3.OA.1", "3.OA.2", "3.OA.3", "3.OA.4", "3.OA.5", "3.OA.6", "3.OA.7", "3.OA.8", "3.OA.9"],
+      "Number and Operations in Base Ten": ["3.NBT.1", "3.NBT.2", "3.NBT.3"],
+      "Number and Operations - Fractions": ["3.NF.1", "3.NF.2", "3.NF.3"],
+      "Measurement and Data": ["3.MD.1", "3.MD.2", "3.MD.3", "3.MD.4", "3.MD.5", "3.MD.6", "3.MD.7", "3.MD.8"],
+      "Geometry": ["3.G.1", "3.G.2"]
+    },
+    "4": {
+      "Operations and Algebraic Thinking": ["4.OA.1", "4.OA.2", "4.OA.3", "4.OA.4", "4.OA.5"],
+      "Number and Operations in Base Ten": ["4.NBT.1", "4.NBT.2", "4.NBT.3", "4.NBT.4", "4.NBT.5", "4.NBT.6"],
+      "Number and Operations - Fractions": ["4.NF.1", "4.NF.2", "4.NF.3", "4.NF.4", "4.NF.5", "4.NF.6", "4.NF.7"],
+      "Measurement and Data": ["4.MD.1", "4.MD.2", "4.MD.3", "4.MD.4"],
+      "Geometry": ["4.G.1", "4.G.2", "4.G.3"]
+    },
+    "5": {
+      "Operations and Algebraic Thinking": ["5.OA.1", "5.OA.2", "5.OA.3"],
+      "Number and Operations in Base Ten": ["5.NBT.1", "5.NBT.2", "5.NBT.3", "5.NBT.4", "5.NBT.5", "5.NBT.6", "5.NBT.7"],
+      "Number and Operations - Fractions": ["5.NF.1", "5.NF.2", "5.NF.3", "5.NF.4", "5.NF.5", "5.NF.6", "5.NF.7"],
+      "Measurement and Data": ["5.MD.1", "5.MD.2", "5.MD.3", "5.MD.4", "5.MD.5"],
+      "Geometry": ["5.G.1", "5.G.2"]
+    },
+    "6": {
+      "Ratios and Proportional Relationships": ["6.RP.1", "6.RP.2", "6.RP.3"],
+      "The Number System": ["6.NS.1", "6.NS.2", "6.NS.3", "6.NS.4", "6.NS.5", "6.NS.6", "6.NS.7", "6.NS.8"],
+      "Expressions and Equations": ["6.EE.1", "6.EE.2", "6.EE.3", "6.EE.4", "6.EE.5", "6.EE.6", "6.EE.7", "6.EE.8", "6.EE.9"],
+      "Geometry": ["6.G.1", "6.G.2", "6.G.3", "6.G.4"],
+      "Statistics and Probability": ["6.SP.1", "6.SP.2", "6.SP.3", "6.SP.4", "6.SP.5"]
+    },
+    "7": {
+      "Ratios and Proportional Relationships": ["7.RP.1", "7.RP.2", "7.RP.3"],
+      "The Number System": ["7.NS.1", "7.NS.2", "7.NS.3"],
+      "Expressions and Equations": ["7.EE.1", "7.EE.2", "7.EE.3", "7.EE.4"],
+      "Geometry": ["7.G.1", "7.G.2", "7.G.3", "7.G.4", "7.G.5", "7.G.6"],
+      "Statistics and Probability": ["7.SP.1", "7.SP.2", "7.SP.3", "7.SP.4", "7.SP.5", "7.SP.6", "7.SP.7", "7.SP.8"]
+    },
+    "8": {
+      "The Number System": ["8.NS.1", "8.NS.2"],
+      "Expressions and Equations": ["8.EE.1", "8.EE.2", "8.EE.3", "8.EE.4", "8.EE.5", "8.EE.6", "8.EE.7", "8.EE.8"],
+      "Functions": ["8.F.1", "8.F.2", "8.F.3", "8.F.4", "8.F.5"],
+      "Geometry": ["8.G.1", "8.G.2", "8.G.3", "8.G.4", "8.G.5", "8.G.6", "8.G.7", "8.G.8", "8.G.9"],
+      "Statistics and Probability": ["8.SP.1", "8.SP.2", "8.SP.3", "8.SP.4"]
+    },
+    "9-10": {
+      "Number and Quantity": ["HSN-RN.1", "HSN-RN.2", "HSN-RN.3", "HSN-Q.1", "HSN-Q.2", "HSN-Q.3", "HSN-CN.1", "HSN-CN.2", "HSN-CN.7"],
+      "Algebra": ["HSA-SSE.1", "HSA-SSE.2", "HSA-SSE.3", "HSA-CED.1", "HSA-CED.2", "HSA-CED.3", "HSA-CED.4", "HSA-REI.1", "HSA-REI.3", "HSA-REI.4", "HSA-REI.5", "HSA-REI.6", "HSA-REI.10", "HSA-REI.11", "HSA-REI.12"],
+      "Functions": ["HSF-IF.1", "HSF-IF.2", "HSF-IF.3", "HSF-IF.4", "HSF-IF.5", "HSF-IF.6", "HSF-IF.7", "HSF-IF.8", "HSF-IF.9", "HSF-BF.1", "HSF-BF.2", "HSF-BF.3", "HSF-LE.1", "HSF-LE.2", "HSF-LE.3", "HSF-LE.5"],
+      "Geometry": ["HSG-CO.1", "HSG-CO.2", "HSG-CO.3", "HSG-CO.4", "HSG-CO.5", "HSG-CO.6", "HSG-CO.7", "HSG-CO.8", "HSG-CO.9", "HSG-CO.10", "HSG-CO.11", "HSG-CO.12", "HSG-CO.13", "HSG-SRT.1", "HSG-SRT.2", "HSG-SRT.3", "HSG-SRT.4", "HSG-SRT.5", "HSG-SRT.6", "HSG-SRT.7", "HSG-SRT.8", "HSG-GPE.1", "HSG-GPE.4", "HSG-GPE.5", "HSG-GPE.6", "HSG-GPE.7", "HSG-GMD.1", "HSG-GMD.3", "HSG-MG.1", "HSG-MG.2", "HSG-MG.3"],
+      "Statistics and Probability": ["HSS-ID.1", "HSS-ID.2", "HSS-ID.3", "HSS-ID.5", "HSS-ID.6", "HSS-ID.7", "HSS-ID.8", "HSS-ID.9", "HSS-IC.1", "HSS-IC.2", "HSS-IC.3", "HSS-IC.4", "HSS-IC.5", "HSS-IC.6", "HSS-CP.1", "HSS-CP.2", "HSS-CP.3", "HSS-CP.4", "HSS-CP.5", "HSS-CP.6", "HSS-CP.7", "HSS-CP.8", "HSS-CP.9", "HSS-MD.1", "HSS-MD.2", "HSS-MD.3", "HSS-MD.4", "HSS-MD.5", "HSS-MD.6", "HSS-MD.7"]
+    },
+    "11-12": {
+      "Number and Quantity": ["HSN-RN.1", "HSN-RN.2", "HSN-RN.3", "HSN-Q.1", "HSN-Q.2", "HSN-Q.3", "HSN-CN.1", "HSN-CN.2", "HSN-CN.3", "HSN-CN.4", "HSN-CN.5", "HSN-CN.6", "HSN-CN.8", "HSN-CN.9"],
+      "Algebra": ["HSA-SSE.1", "HSA-SSE.2", "HSA-SSE.3", "HSA-SSE.4", "HSA-APR.1", "HSA-APR.2", "HSA-APR.3", "HSA-APR.4", "HSA-APR.5", "HSA-APR.6", "HSA-APR.7", "HSA-CED.1", "HSA-CED.2", "HSA-CED.3", "HSA-CED.4", "HSA-REI.1", "HSA-REI.2", "HSA-REI.3", "HSA-REI.4", "HSA-REI.7", "HSA-REI.8", "HSA-REI.9", "HSA-REI.10", "HSA-REI.11", "HSA-REI.12"],
+      "Functions": ["HSF-IF.1", "HSF-IF.2", "HSF-IF.3", "HSF-IF.4", "HSF-IF.5", "HSF-IF.6", "HSF-IF.7", "HSF-IF.8", "HSF-IF.9", "HSF-BF.1", "HSF-BF.2", "HSF-BF.3", "HSF-BF.4", "HSF-BF.5", "HSF-LE.1", "HSF-LE.2", "HSF-LE.3", "HSF-LE.4", "HSF-LE.5", "HSF-TF.1", "HSF-TF.2", "HSF-TF.3", "HSF-TF.4", "HSF-TF.5", "HSF-TF.6", "HSF-TF.7", "HSF-TF.8", "HSF-TF.9"],
+      "Geometry": ["HSG-CO.1", "HSG-CO.2", "HSG-CO.3", "HSG-CO.4", "HSG-CO.5", "HSG-CO.6", "HSG-CO.7", "HSG-CO.8", "HSG-CO.9", "HSG-CO.10", "HSG-CO.11", "HSG-CO.12", "HSG-CO.13", "HSG-SRT.1", "HSG-SRT.2", "HSG-SRT.3", "HSG-SRT.4", "HSG-SRT.5", "HSG-SRT.6", "HSG-SRT.7", "HSG-SRT.8", "HSG-SRT.9", "HSG-SRT.10", "HSG-SRT.11", "HSG-C.1", "HSG-C.2", "HSG-C.3", "HSG-C.4", "HSG-C.5", "HSG-GPE.1", "HSG-GPE.2", "HSG-GPE.3", "HSG-GPE.4", "HSG-GPE.5", "HSG-GPE.6", "HSG-GPE.7", "HSG-GMD.1", "HSG-GMD.2", "HSG-GMD.3", "HSG-GMD.4", "HSG-MG.1", "HSG-MG.2", "HSG-MG.3"],
+      "Statistics and Probability": ["HSS-ID.1", "HSS-ID.2", "HSS-ID.3", "HSS-ID.4", "HSS-ID.5", "HSS-ID.6", "HSS-ID.7", "HSS-ID.8", "HSS-ID.9", "HSS-IC.1", "HSS-IC.2", "HSS-IC.3", "HSS-IC.4", "HSS-IC.5", "HSS-IC.6", "HSS-CP.1", "HSS-CP.2", "HSS-CP.3", "HSS-CP.4", "HSS-CP.5", "HSS-CP.6", "HSS-CP.7", "HSS-CP.8", "HSS-CP.9", "HSS-MD.1", "HSS-MD.2", "HSS-MD.3", "HSS-MD.4", "HSS-MD.5", "HSS-MD.6", "HSS-MD.7"]
+    }
+  }
+}

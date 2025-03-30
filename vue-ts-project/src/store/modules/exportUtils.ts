@@ -43,6 +43,11 @@ const exportUtils: Module<ExportState, RootState> = {
                   framework: 'nextGenScience',
                   data: { ...rootState.nextGenScience }
                 };
+              case 'wida':
+                return {
+                  framework: 'wida',
+                  data: { ...rootState.wida }
+                };
               default:
                 return null;
             }
@@ -85,26 +90,41 @@ const exportUtils: Module<ExportState, RootState> = {
               const ccData = rootState.commonCore;
               doc.text('Common Core Standards', 20, yPosition);
               doc.text(`Grade: ${ccData.grade}`, 30, yPosition + 10);
-              doc.text(`Strand: ${ccData.strand}`, 30, yPosition + 20);
+              doc.text(`Content Strand: ${ccData.contentStrand}`, 30, yPosition + 20);
               doc.text('Selected Standards:', 30, yPosition + 30);
-              ccData.selectedStandards.forEach((std, idx) => {
-                doc.text(`- ${std.code}: ${std.description}`, 40, yPosition + 40 + (idx * 10));
+              ccData.selectedStandards.forEach((standard, idx) => {
+                doc.text(`- ${standard}`, 40, yPosition + 40 + (idx * 10));
               });
               yPosition += 60 + (ccData.selectedStandards.length * 10);
               break;
             }
-            case 'nextGenScience': {
-              const ngssData = rootState.nextGenScience;
-              doc.text('Next Generation Science Standards', 20, yPosition);
-              doc.text(`Grade Level: ${ngssData.gradeLevel}`, 30, yPosition + 10);
-              doc.text(`Domain: ${ngssData.scienceDomain}`, 30, yPosition + 20);
-              doc.text('Core Ideas:', 30, yPosition + 30);
-              ngssData.disciplinaryCoreIdeas.forEach((idea, idx) => {
-                doc.text(`- ${idea.code}: ${idea.description}`, 40, yPosition + 40 + (idx * 10));
-              });
-              yPosition += 60 + (ngssData.disciplinaryCoreIdeas.length * 10);
-              break;
-            }
+              case 'nextGenScience': {
+                const ngssData = rootState.nextGenScience;
+                doc.text('Next Generation Science Standards', 20, yPosition);
+                doc.text(`Grade Level: ${ngssData.gradeLevel}`, 30, yPosition + 10);
+                doc.text(`Domain: ${ngssData.scienceDomain}`, 30, yPosition + 20);
+                doc.text('Core Ideas:', 30, yPosition + 30);
+                ngssData.disciplinaryCoreIdeas.forEach((idea, idx) => {
+                  doc.text(`- ${idea.code}: ${idea.description}`, 40, yPosition + 40 + (idx * 10));
+                });
+                yPosition += 60 + (ngssData.disciplinaryCoreIdeas.length * 10);
+                break;
+              }
+              case 'wida': {
+                const widaData = rootState.wida;
+                doc.text('WIDA Standards', 20, yPosition);
+                doc.text(`Grade Level Cluster: ${widaData.gradeLevelCluster}`, 30, yPosition + 10);
+                doc.text('Language Domains:', 30, yPosition + 20);
+                widaData.languageDomains.forEach((domain, idx) => {
+                  doc.text(`- ${domain}`, 40, yPosition + 30 + (idx * 10));
+                });
+                doc.text('WIDA Standards:', 30, yPosition + 40 + (widaData.languageDomains.length * 10));
+                widaData.widaStandards.forEach((standard, idx) => {
+                  doc.text(`- ${standard}`, 40, yPosition + 50 + (widaData.languageDomains.length * 10) + (idx * 10));
+                });
+                yPosition += 70 + (widaData.languageDomains.length + widaData.widaStandards.length) * 10;
+                break;
+              }
           }
         });
 
@@ -135,8 +155,8 @@ Applied Frameworks:`;
             const ccData = rootState.commonCore;
             prompt += `
 Grade: ${ccData.grade}
-Strand: ${ccData.strand}
-Standards: ${ccData.selectedStandards.map(std => std.code).join(', ')}`;
+Content Strand: ${ccData.contentStrand}
+Standards: ${ccData.selectedStandards.join(', ')}`;
             break;
           }
           case 'nextGenScience': {
@@ -147,6 +167,15 @@ Domain: ${ngssData.scienceDomain}
 Core Ideas: ${ngssData.disciplinaryCoreIdeas.map(idea => idea.code).join(', ')}
 Practices: ${ngssData.sciencePractices.join(', ')}
 Crosscutting Concepts: ${ngssData.crossCuttingConcepts.join(', ')}`;
+            break;
+          }
+          case 'wida': {
+            const widaData = rootState.wida;
+            prompt += `
+Grade Level Cluster: ${widaData.gradeLevelCluster}
+Language Domains: ${widaData.languageDomains.join(', ')}
+WIDA Standards: ${widaData.widaStandards.join(', ')}
+Content Objective: ${widaData.contentObjective}`;
             break;
           }
         }

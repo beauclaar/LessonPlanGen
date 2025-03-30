@@ -24,7 +24,7 @@
         <v-col cols="12">
           <v-select
             v-model="grade"
-            :items="gradeOptions"
+            :items="gradeLevels"
             label="Grade Level"
             required
             :rules="[v => !!v || 'Grade level is required']"
@@ -32,33 +32,35 @@
         </v-col>
         <v-col cols="12">
           <v-select
-            v-model="strand"
-            :items="strandOptions"
+            v-model="subject"
+            :items="subjectOptions"
+            label="Subject"
+            required
+            :rules="[v => !!v || 'Subject is required']"
+            :disabled="!grade"
+          ></v-select>
+        </v-col>
+        <v-col cols="12">
+          <v-select
+            v-model="contentStrand"
+            :items="contentStrandOptions"
             label="Content Strand"
             required
             :rules="[v => !!v || 'Content strand is required']"
+            :disabled="!subject"
           ></v-select>
         </v-col>
         <v-col cols="12">
           <v-select
             v-model="selectedStandards"
-            :items="standardsOptions"
-            label="Select Standards"
+            :items="standardOptions"
+            label="Standards"
             multiple
             chips
             required
             :rules="[v => v.length > 0 || 'At least one standard is required']"
-          >
-            <template v-slot:chip="{ props, item }">
-              <v-chip v-bind="props">{{ item.raw.code }}</v-chip>
-            </template>
-            <template v-slot:item="{ props, item }">
-              <v-list-item v-bind="props">
-                <v-list-item-title>{{ item.raw.code }}</v-list-item-title>
-                <v-list-item-subtitle>{{ item.raw.description }}</v-list-item-subtitle>
-              </v-list-item>
-            </template>
-          </v-select>
+            :disabled="!contentStrand"
+          ></v-select>
         </v-col>
         <v-col cols="12">
           <v-textarea
@@ -70,136 +72,117 @@
         </v-col>
       </v-row>
     </v-form>
-    <div v-if="isDevelopment" class="debug-panel pa-4">
-      <pre>Component State:
-        Is Framework Active: {{ isFrameworkActive }}
-        Loading: {{ isLoading }}
-        Error: {{ error }}
-        Grade: {{ grade }}
-        Strand: {{ strand }}
-        Selected Standards: {{ selectedStandards }}
-      </pre>
-    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, ref, watch, onMounted } from 'vue';
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
+import standardsData from '@/data/commonCoreStandards.json';
 
-interface Standard {
-  code: string;
-  description: string;
-}
+const store = useStore();
+const isDevelopment = ref(import.meta.env.DEV);
 
-export default defineComponent({
-  name: 'CommonCoreForm',
+// Framework states
+const isFrameworkActive = computed(() => 
+  store.getters['baseLessonPlan/activeFrameworks'].includes('commonCore')
+);
 
-  emits: ['mounted'],
+const activeFrameworksList = computed(() => 
+  store.getters['baseLessonPlan/activeFrameworks'].join(', ')
+);
 
-  async setup(props, { emit }) {
-    const store = useStore();
-    const isDevelopment = ref(import.meta.env.DEV);
-    const mountStatus = ref<'mounting' | 'mounted' | 'error'>('mounting');
+const isLoading = computed(() => store.getters['commonCore/isLoading']);
+const error = computed(() => store.getters['commonCore/getError']);
 
-    // Framework states
-    const isFrameworkActive = computed(() => 
-      store.getters['baseLessonPlan/activeFrameworks'].includes('commonCore')
-    );
-
-    const activeFrameworksList = computed(() => 
-      store.getters['baseLessonPlan/activeFrameworks'].join(', ')
-    );
-
-    const isLoading = computed(() => store.getters['commonCore/isLoading']);
-    const error = computed(() => store.getters['commonCore/getError']);
-
-    onMounted(async () => {
-      try {
-        console.log('[CommonCore] Starting component mount');
-        await store.dispatch('commonCore/resetState');
-        console.log('[CommonCore] State reset complete');
-        console.log('[CommonCore] Framework active:', isFrameworkActive.value);
-        console.log('[CommonCore] Current state:', store.state.commonCore);
-        console.log('[CommonCore] Active frameworks:', store.getters['baseLessonPlan/activeFrameworks']);
-        
-        mountStatus.value = 'mounted';
-        emit('mounted');
-        console.log('[CommonCore] Component mounted successfully');
-      } catch (error) {
-        console.error('[CommonCore] Error during mount:', error);
-        mountStatus.value = 'error';
-      }
-    });
-    
-    const grade = computed({
-      get: () => store.state.commonCore.grade,
-      set: (value: string) => store.dispatch('commonCore/updateGrade', value)
-    });
-
-    const strand = computed({
-      get: () => store.state.commonCore.strand,
-      set: (value: string) => store.dispatch('commonCore/updateStrand', value)
-    });
-
-    const gradeOptions = [
-      'K', '1', '2', '3', '4', '5',
-      '6', '7', '8', '9', '10', '11', '12'
-    ];
-
-    const strandOptions = computed(() => {
-      const topic = store.getters['baseLessonPlan/currentPlan'].topic;
-      
-      if (topic === 'Mathematics') {
-        return [
-          'Number & Operations',
-          'Algebra',
-          'Geometry',
-          'Measurement & Data',
-          'Statistics & Probability'
-        ];
-      }
-      
-      return [
-        'Reading Literature',
-        'Reading Informational Text',
-        'Writing',
-        'Speaking & Listening',
-        'Language'
-      ];
-    });
-
-    const standardsOptions = ref<Standard[]>([
-      { code: 'PLACEHOLDER.1', description: 'This is a placeholder standard' },
-      { code: 'PLACEHOLDER.2', description: 'Another placeholder standard' }
-    ]);
-
-    const selectedStandards = computed({
-      get: () => store.state.commonCore.selectedStandards,
-      set: (value: Standard[]) => store.dispatch('commonCore/updateStandards', value)
-    });
-
-    const standardsAlignment = computed({
-      get: () => store.state.commonCore.standardsAlignment,
-      set: (value: string) => store.dispatch('commonCore/updateAlignment', value)
-    });
-
-    return {
-      isFrameworkActive,
-      activeFrameworksList,
-      isDevelopment,
-      mountStatus,
-      isLoading,
-      error,
-      grade,
-      strand,
-      gradeOptions,
-      strandOptions,
-      standardsOptions,
-      selectedStandards,
-      standardsAlignment
-    };
+// Form state
+const grade = computed({
+  get: () => store.state.commonCore.grade,
+  set: (value: string) => {
+    store.dispatch('commonCore/updateGrade', value);
+    store.dispatch('commonCore/updateSubject', '');
+    store.dispatch('commonCore/updateContentStrand', '');
+    store.dispatch('commonCore/updateStandards', []);
   }
+});
+
+const subject = computed({
+  get: () => store.state.commonCore.subject,
+  set: (value: string) => {
+    store.dispatch('commonCore/updateSubject', value);
+    store.dispatch('commonCore/updateContentStrand', '');
+    store.dispatch('commonCore/updateStandards', []);
+  }
+});
+
+const contentStrand = computed({
+  get: () => store.state.commonCore.contentStrand,
+  set: (value: string) => {
+    store.dispatch('commonCore/updateContentStrand', value);
+    store.dispatch('commonCore/updateStandards', []);
+  }
+});
+
+const selectedStandards = computed({
+  get: () => store.state.commonCore.selectedStandards,
+  set: (value: string[]) => store.dispatch('commonCore/updateStandards', value)
+});
+
+const gradeLevels = [
+  'Kindergarten',
+  'Grade 1',
+  'Grade 2',
+  'Grade 3',
+  'Grade 4',
+  'Grade 5',
+  'Grade 6',
+  'Grade 7',
+  'Grade 8',
+  'Grades 9-10',
+  'Grades 11-12'
+];
+const gradeOptions = gradeLevels;
+
+const gradeKey = computed(() => {
+  if (!grade.value) return [];
+  if (grade.value === 'Kindergarten') return ['K'];
+  if (grade.value.startsWith('Grade ')) {
+    return [grade.value.replace('Grade ', '').trim()];
+  }
+  if (grade.value.startsWith('Grades ')) {
+    return [grade.value.replace('Grades ', '').trim()];
+  }
+  return [grade.value];
+});
+
+const subjectOptions = computed(() => {
+  if (!grade.value) return [];
+  return ['ELA', 'Math'];
+});
+
+const contentStrandOptions = computed(() => {
+  if (!grade.value || !subject.value) return [];
+  const strands = new Set<string>();
+  gradeKey.value.forEach((key: string) => {
+    const options = Object.keys((standardsData as Record<string, Record<string, Record<string, string[]>>>)[subject.value][key] || {});
+    options.forEach(option => strands.add(option));
+  });
+  return Array.from(strands);
+});
+
+const standardOptions = computed(() => {
+  if (!grade.value || !subject.value || !contentStrand.value) return [];
+  const standards = new Set<string>();
+  gradeKey.value.forEach((key: string) => {
+    const options = (standardsData as Record<string, Record<string, Record<string, string[]>>>)[subject.value][key]?.[contentStrand.value] || [];
+    options.forEach(option => standards.add(option));
+  });
+  return Array.from(standards);
+});
+
+const standardsAlignment = computed({
+  get: () => store.state.commonCore.standardsAlignment,
+  set: (value: string) => store.dispatch('commonCore/updateAlignment', value)
 });
 </script>
 

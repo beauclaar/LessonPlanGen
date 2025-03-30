@@ -31,20 +31,11 @@
       </v-card-text>
     </v-card>
 
-    <!-- Debug Panel -->
-    <v-card v-if="isDevelopment" class="mb-4 debug-card">
-      <v-card-title class="debug-title">Framework Debug Info</v-card-title>
-      <v-card-text>
-        <pre class="debug-content">
-Active Frameworks: {{ activeFrameworks }}
-        </pre>
-      </v-card-text>
-    </v-card>
 
     <!-- Framework Forms -->
     <div class="framework-forms">
       <!-- Common Core -->
-      <v-card v-show="true" class="mb-4 framework-card">
+      <v-card v-show="isFrameworkSelected('commonCore')" class="mb-4 framework-card">
         <v-card-title>Common Core</v-card-title>
         <v-card-text class="framework-content">
           <Suspense>
@@ -62,7 +53,7 @@ Active Frameworks: {{ activeFrameworks }}
       </v-card>
 
       <!-- Next Gen Science -->
-      <v-card v-show="true" class="mb-4 framework-card">
+      <v-card v-show="isFrameworkSelected('nextGenScience')" class="mb-4 framework-card">
         <v-card-title>Next Generation Science</v-card-title>
         <v-card-text class="framework-content">
           <Suspense>
@@ -80,7 +71,7 @@ Active Frameworks: {{ activeFrameworks }}
       </v-card>
 
       <!-- WIDA -->
-      <v-card v-show="true" class="mb-4 framework-card">
+      <v-card v-show="isFrameworkSelected('wida')" class="mb-4 framework-card">
         <v-card-title>WIDA Standards</v-card-title>
         <v-card-text class="framework-content">
           <Suspense>
@@ -125,7 +116,12 @@ import CommonCoreForm from '../Frameworks/CommonCoreForm/index.vue';
 import NextGenScienceForm from '../Frameworks/NextGenScienceForm/index.vue';
 import WIDAForm from '../Frameworks/WIDAForm/index.vue';
 
-const availableFrameworks = [
+interface Framework {
+  id: string;
+  name: string;
+}
+
+const availableFrameworks: Framework[] = [
   {
     id: 'commonCore',
     name: 'Common Core'
@@ -155,20 +151,23 @@ export default defineComponent({
     const showError = ref(false);
     const errorMessage = ref('');
     
-    // Debug mode: Always show all frameworks
-    const activeFrameworks = computed(() => ['commonCore', 'nextGenScience', 'wida']);
-
-    const isFrameworkActive = (): boolean => true;
+    const activeFrameworks = computed(() => store.state.baseLessonPlan.activeFrameworks || []);
 
     const isFrameworkSelected = (frameworkId: string): boolean => 
       activeFrameworks.value.includes(frameworkId);
 
-    // Debug mode: Framework selection disabled but still updates store
     const toggleFramework = async (frameworkId: string) => {
       try {
-        console.log('[FrameworkSelector] Debug mode: Framework selection disabled');
-        // Still update store to maintain framework state
-        await store.dispatch('baseLessonPlan/setActiveFrameworks', activeFrameworks.value);
+        const newFrameworks = isFrameworkSelected(frameworkId)
+          ? activeFrameworks.value.filter((fw: string) => fw !== frameworkId)
+          : [...activeFrameworks.value, frameworkId];
+          
+        await store.dispatch('baseLessonPlan/setActiveFrameworks', newFrameworks);
+        
+        // Initialize or reset framework state when selected
+        if (!isFrameworkSelected(frameworkId)) {
+          await store.dispatch(`${frameworkId}/resetState`);
+        }
       } catch (error) {
         showError.value = true;
         errorMessage.value = 'Error toggling framework: ' + (error instanceof Error ? error.message : String(error));
@@ -183,40 +182,10 @@ export default defineComponent({
       return false; // prevent error propagation
     });
 
-    // Initialize all frameworks and their states
-    const initializeFrameworks = async () => {
-      try {
-        // Reset any existing state first
-        await store.dispatch('resetAllStates');
-        
-        // Set active frameworks
-        await store.dispatch('baseLessonPlan/setActiveFrameworks', activeFrameworks.value);
-        
-        // Initialize each framework
-        for (const framework of activeFrameworks.value) {
-          try {
-            await store.dispatch(`${framework}/resetState`);
-          } catch (error) {
-            console.error(`Error initializing ${framework}:`, error);
-            showError.value = true;
-            errorMessage.value = `Error initializing ${framework}: ${error instanceof Error ? error.message : String(error)}`;
-          }
-        }
-      } catch (error) {
-        console.error('Error in framework initialization:', error);
-        showError.value = true;
-        errorMessage.value = 'Error initializing frameworks: ' + (error instanceof Error ? error.message : String(error));
-      }
-    };
-
-    // Call initialization on mount
-    initializeFrameworks();
-
     return {
       activeFrameworks,
       availableFrameworks,
       isDevelopment,
-      isFrameworkActive,
       isFrameworkSelected,
       toggleFramework,
       showError,
@@ -258,18 +227,4 @@ export default defineComponent({
   transform: translateY(-2px);
 }
 
-.debug-card {
-  background-color: #f5f5f5;
-}
-
-.debug-title {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.debug-content {
-  font-family: monospace;
-  font-size: 0.9rem;
-  white-space: pre-wrap;
-}
 </style>
