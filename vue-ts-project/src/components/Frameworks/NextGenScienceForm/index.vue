@@ -4,7 +4,7 @@
       class="ngss-form rounded-lg elevation-1"
       @submit.prevent
       v-if="isFrameworkActive"
-    >test
+    >
       <v-row>
         <v-col cols="12">
           <v-select

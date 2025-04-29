@@ -20,7 +20,7 @@ const defaultState: WIDAState = {
   languageDomains: [],
   proficiencyLevels: [],
   contentObjective: '',
-  gradeLevelCluster: null,
+  gradeLevelCluster: '',
   widaStandards: [],
   loading: false,
   error: null
@@ -107,15 +107,7 @@ const wida: Module<WIDAState, RootState> = {
   },
 
   getters: {
-    isValid: (state): boolean => {
-      return !!(
-        state.languageDomains.length > 0 &&
-        state.proficiencyLevels.length > 0 &&
-        state.contentObjective.trim() &&
-        state.gradeLevelCluster &&
-        state.widaStandards.length > 0
-      );
-    },
+    isValid: (state): boolean => true,
 
     getFrameworkData: (state): object => {
       const { loading, error, ...data } = state;

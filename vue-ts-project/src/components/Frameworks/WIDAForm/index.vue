@@ -52,7 +52,20 @@
               :menu-props="{ maxHeight: 400 }"
               persistent-hint
               hint="Select one or more WIDA standards"
-            />
+              item-title="text"
+              item-value="value"
+              return-object
+            >
+              <template v-slot:chip="{ props, item }">
+                <v-chip v-bind="props" :text="item.raw.value" />
+              </template>
+              <template v-slot:item="{ props, item }">
+                <v-list-item v-bind="props">
+                  <template v-slot:title>{{ item.raw.text }}</template>
+                  <template v-slot:subtitle>{{ item.raw.subtitle }}</template>
+                </v-list-item>
+              </template>
+            </v-select>
           </v-col>
 
           <v-col cols="12" sm="12" md="6">
@@ -141,20 +154,6 @@
         </v-row>
       </div>
     </v-form>
-    <!-- Debug panel moved outside main form flow -->
-    <div v-if="isDevelopment" class="debug-panel pa-4 mt-4">
-      <pre>Component State:
-        Is Framework Active: {{ isFrameworkActive }}
-        Loading: {{ isLoading }}
-        Error: {{ error }}
-        Form Valid: {{ isValid }}
-        Grade Level Cluster: {{ gradeLevelCluster }}
-        WIDA Standards: {{ widaStandards }}
-        Language Domains: {{ languageDomains }}
-        Proficiency Levels: {{ proficiencyLevels }}
-        Content Objective: {{ contentObjective }}
-      </pre>
-    </div>
   </div>
 </template>
 
@@ -197,11 +196,11 @@ export default defineComponent({
     });
 
     const standardsOptions = [
-      'Standard 1',
-      'Standard 2',
-      'Standard 3',
-      'Standard 4',
-      'Standard 5'
+      { text: 'Standard 1', value: 'Standard 1', subtitle: 'Language for Social and Instructional Language' },
+      { text: 'Standard 2', value: 'Standard 2', subtitle: 'Language of Language Arts' },
+      { text: 'Standard 3', value: 'Standard 3', subtitle: 'Language of Mathematics' },
+      { text: 'Standard 4', value: 'Standard 4', subtitle: 'Language of Science' },
+      { text: 'Standard 5', value: 'Standard 5', subtitle: 'Language of Social Studies and History' }
     ];
 
     const gradeLevelClusterOptions = [

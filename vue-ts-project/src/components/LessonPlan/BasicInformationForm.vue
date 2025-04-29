@@ -1,16 +1,9 @@
 <template>
   <div class="basic-form-container">
-    <!-- Debug Info -->
-    <v-card class="mb-4 debug-card" color="grey lighten-4" v-if="isDevelopment">
-      <v-card-text>
-        <pre>{{ debugInfo }}</pre>
-      </v-card-text>
-    </v-card>
-
     <!-- Form Content -->
     <v-form @submit.prevent ref="form">
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12">
           <v-text-field
             :model-value="formFields.title"
             @update:model-value="updateField('title', $event)"
@@ -20,6 +13,29 @@
             placeholder="Enter a descriptive title for your lesson"
             clearable
           ></v-text-field>
+        </v-col>
+        <v-col cols="12">
+          <v-textarea
+            :model-value="formFields.description"
+            @update:model-value="updateField('description', $event)"
+            label="Lesson Description"
+            placeholder="Enter a detailed description of your lesson"
+            clearable
+            auto-grow
+            rows="3"
+          ></v-textarea>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-select
+            :model-value="formFields.gradeLevel"
+            @update:model-value="updateField('gradeLevel', $event)"
+            :items="gradeLevels"
+            label="Grade Level"
+            required
+            :rules="rules.gradeLevel"
+            placeholder="Select grade level"
+            clearable
+          ></v-select>
         </v-col>
         <v-col cols="12" md="6">
           <v-select
@@ -80,6 +96,8 @@ import { useStore } from 'vuex';
 
 interface FormData {
   title: string;
+  description: string;
+  gradeLevel: string;
   topic: string;
   timePerSession: number;
   occurrence: string;
@@ -97,11 +115,27 @@ export default defineComponent({
     console.log('BasicInformationForm mounting');
     const store = useStore();
     const form = ref(null);
-    const formState = ref('mounted');
-    const isDevelopment = ref(import.meta.env.DEV);
+
+    const gradeLevels = [
+      'Kindergarten',
+      'Grade 1',
+      'Grade 2',
+      'Grade 3',
+      'Grade 4',
+      'Grade 5',
+      'Grade 6',
+      'Grade 7',
+      'Grade 8',
+      'Grade 9',
+      'Grade 10',
+      'Grade 11',
+      'Grade 12'
+    ];
 
     const formFields = computed(() => ({
       title: store.getters['baseLessonPlan/currentPlan']?.title || '',
+      description: store.getters['baseLessonPlan/currentPlan']?.description || '',
+      gradeLevel: store.getters['baseLessonPlan/currentPlan']?.gradeLevel || '',
       topic: store.getters['baseLessonPlan/currentPlan']?.topic || 'Mathematics',
       timePerSession: store.getters['baseLessonPlan/currentPlan']?.timePerSession || 50,
       occurrence: store.getters['baseLessonPlan/currentPlan']?.occurrence || '',
@@ -110,6 +144,7 @@ export default defineComponent({
 
     const rules: FormRules = {
       title: [(v: string) => !!v || 'Title is required'],
+      gradeLevel: [(v: string) => !!v || 'Grade Level is required'],
       topic: [(v: string) => !!v || 'Topic is required'],
       timePerSession: [
         (v: number) => !!v || 'Time is required',
@@ -131,17 +166,14 @@ export default defineComponent({
       store.dispatch('baseLessonPlan/updateBasePlan', update);
     };
 
-    const debugInfo = computed(() => ({
-      formState: formState.value,
-      storeData: formFields.value
-    }));
-
     onMounted(() => {
       console.log('BasicInformationForm mounted');
       // Ensure the store has been initialized with default values
       if (!store.getters['baseLessonPlan/currentPlan']) {
         store.dispatch('baseLessonPlan/updateBasePlan', {
           title: '',
+          description: '',
+          gradeLevel: '',
           topic: 'Mathematics',
           timePerSession: 50,
           occurrence: '',
@@ -156,9 +188,8 @@ export default defineComponent({
       formFields,
       rules,
       topics,
-      updateField,
-      debugInfo,
-      isDevelopment
+      gradeLevels,
+      updateField
     };
   }
 });
@@ -171,10 +202,5 @@ export default defineComponent({
 
 .v-text-field {
   margin-top: 8px;
-}
-
-.debug-card {
-  border: 2px solid #e0e0e0;
-  background: white !important;
 }
 </style>

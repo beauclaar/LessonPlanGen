@@ -2,13 +2,15 @@ import { Module } from 'vuex';
 
 export interface Standard {
   code: string;
+  name: string;
   description: string;
 }
 
 export interface CommonCoreState {
   grade: string;
-  strand: string;
-  selectedStandards: Standard[];
+  subject: string;
+  contentStrand: string;
+  selectedStandards: string[];
   standardsAlignment: string;
   loading: boolean;
   error: string | null;
@@ -16,7 +18,8 @@ export interface CommonCoreState {
 
 const defaultState: CommonCoreState = {
   grade: '',
-  strand: '',
+  subject: '',
+  contentStrand: '',
   selectedStandards: [],
   standardsAlignment: '',
   loading: false,
@@ -33,11 +36,15 @@ const commonCore: Module<CommonCoreState, any> = {
       state.grade = grade;
     },
 
-    UPDATE_STRAND(state, strand: string) {
-      state.strand = strand;
+    UPDATE_SUBJECT(state, subject: string) {
+      state.subject = subject;
     },
 
-    UPDATE_STANDARDS(state, standards: Standard[]) {
+    UPDATE_CONTENT_STRAND(state, contentStrand: string) {
+      state.contentStrand = contentStrand;
+    },
+
+    UPDATE_STANDARDS(state, standards: string[]) {
       state.selectedStandards = standards;
     },
 
@@ -63,11 +70,15 @@ const commonCore: Module<CommonCoreState, any> = {
       commit('UPDATE_GRADE', grade);
     },
 
-    updateStrand({ commit }, strand: string) {
-      commit('UPDATE_STRAND', strand);
+    updateSubject({ commit }, subject: string) {
+      commit('UPDATE_SUBJECT', subject);
     },
 
-    updateStandards({ commit }, standards: Standard[]) {
+    updateContentStrand({ commit }, contentStrand: string) {
+      commit('UPDATE_CONTENT_STRAND', contentStrand);
+    },
+
+    updateStandards({ commit }, standards: string[]) {
       commit('UPDATE_STANDARDS', standards);
     },
 
@@ -94,7 +105,8 @@ const commonCore: Module<CommonCoreState, any> = {
     isValid: (state): boolean => {
       return !!(
         state.grade &&
-        state.strand &&
+        state.subject &&
+        state.contentStrand &&
         state.selectedStandards.length > 0
       );
     },
